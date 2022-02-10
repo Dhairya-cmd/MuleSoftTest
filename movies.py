@@ -1,22 +1,32 @@
-
 import sqlite3
 
+												#connection
+cnt = sqlite3.connect("bollywood.db")
+print('Connection established Successfully')
 
-cnt = sqlite3.connect("bollywood")
 
 
+												#create table
 cnt.execute('''CREATE TABLE movies(
 name TEXT,
 actor TEXT,
 actress TEXT,
-yearOfRelease INTEGER,);''')
+yearOfRelease INTEGER)''')
+print("Table Created Successfully")
 
+
+
+
+												insert record
 cnt.execute('''INSERT INTO movies VALUES(
-'Pushpa', 'Allu Arjun', 'Rashmika Mandana', 2021);''')
-
+'RRR', 'Ramcharan', 'Alia Bhatt', 2022);''')
 cnt.commit()
+print("Record Insert Successfully")
 
+												fetch record
+cursor=cnt.execute("SELECT * FROM movies WHERE actor = 'Allu Arjun'")
+print(cursor.fetchall())
 
-cnt.execute('SELECT * FROM movies')
-
-cnt.execute('SELECT * FROM movies WHERE actor = 'Allu Arjun'')
+												fetch record with filter
+cursor=cnt.execute("SELECT * FROM movies WHERE actor = 'Allu Arjun'")
+print(cursor.fetchall())
